@@ -13,7 +13,10 @@ None for now!
 No problems, works with all features as asked.
 
 ### Comments: 
-Learning was a bit steep without foundational knowledge. Fun YES! Learning YES! Not sure when you will scale me to a level of making that Marvel movie you have shown in intro class but I am waiting patiently with lot of hopes. As long as this expectation is met, it won't be a waste of time. Thanks for very detailed requirements sheet. I have tried adding a rotation feature like you did in sample output file and it works perfect. I have also added feature to change background.
+Learning was a bit steep without foundational knowledge. Fun YES! Learning YES! Not sure when you will scale me to a level of making that Marvel movie you have shown in intro class but I am waiting patiently with lot of hopes. As long as this expectation is met, it won't be a waste of time. Thanks for very detailed requirements sheet. 
+- I have tried adding a rotation feature like you did in sample output file and it works perfect.
+- I have also added feature to change background. 
+- Adding to all that if you ever want to see teapot again, hit 't'. Ofcourse you still need to load one obj file everytime then switch.
 
 ### To run:
 You need to specify the object file to load at all times like below:
