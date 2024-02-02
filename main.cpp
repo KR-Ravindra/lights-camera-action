@@ -31,7 +31,7 @@ vector<Vector3f> vecn;
 
 // This is the list of faces (indices into vecv and vecn)
 vector<vector<unsigned> > vecf;
-
+bool isTeapot = false; // to toggle teapot object
 
 // You will need more global variables to implement color and position changes
 
@@ -73,6 +73,10 @@ void keyboardFunc( unsigned char key, int x, int y )
             glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
             cout << "Background color changed to dark." << endl;
         }
+        break;
+    case 't':
+        isTeapot = !isTeapot;  // Flip the boolean value
+        cout << "Toggled to " << (isTeapot ? "teapot" : "original image") << "." << endl;
         break;
     default:
         cout << "Unhandled key press " << key << "." << endl;        
@@ -185,21 +189,24 @@ void drawScene(void)
 
 	// This GLUT method draws a teapot.  You should replace
 	// it with code which draws the object you loaded.
-	// glutSolidTeapot(1.0); 
-    for (const auto& face : vecf) {
-        glBegin(GL_TRIANGLES);
-        for (int i = 0; i < face.size(); i += 2) {
-            unsigned int vIndex = face[i];
-            unsigned int nIndex = face[i + 1];
-            glNormal3d(vecn[nIndex][0], vecn[nIndex][1], vecn[nIndex][2]);
-            glVertex3d(vecv[vIndex][0], vecv[vIndex][1], vecv[vIndex][2]);
+	if (isTeapot) {
+        glutSolidTeapot(1.0);
+    } else {
+        for (const auto& face : vecf) {
+            glBegin(GL_TRIANGLES);
+            for (int i = 0; i < face.size(); i += 2) {
+                unsigned int vIndex = face[i];
+                unsigned int nIndex = face[i + 1];
+                glNormal3d(vecn[nIndex][0], vecn[nIndex][1], vecn[nIndex][2]);
+                glVertex3d(vecv[vIndex][0], vecv[vIndex][1], vecv[vIndex][2]);
+            }
+            glEnd();
         }
-        glEnd();
     }
 
 
     std::cout << std::endl << std::endl << std::endl << std::endl << std::endl;
-    std::cout << "Object loaded successfully. \n Press 'c' to change color \n Use arrow keys to shift lighting \n Press 'r' to rotate object over y axis \n Press 'b' to switch dark/light mode " << std::endl;
+    std::cout << "Object loaded successfully. \n Press 'c' to change color \n Use arrow keys to shift lighting \n Press 'r' to rotate object over y axis \n Press 'b' to switch dark/light mode \n Hit 't' anytime to switch to default teapot object" << std::endl;
     // Dump the image to the screen.    
     // glFlush();
     glutSwapBuffers();
@@ -239,7 +246,6 @@ void reshapeFunc(int w, int h)
 int main( int argc, char** argv )
 {
     loadInput();
-
     glutInit(&argc,argv);
 
     // We're going to animate it, so double buffer 
